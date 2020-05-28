@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="choicepocFlow" doc:id="ac883450-b8c4-4db8-9462-8cbe3482bf70" >
 		<http:listener doc:name="Listener" doc:id="1fd7ff98-c668-4859-8a94-65db75079bf5" config-ref="HTTP_Listener_config" path="/choice"/>
-		<set-payload value="#['reiegion']" doc:name="Set Payload" doc:id="5c0b42f0-b044-4bf6-9b73-a13c18f36730" />
+		<set-payload value="#['region']" doc:name="Set Payload" doc:id="5c0b42f0-b044-4bf6-9b73-a13c18f36730" />
 		<choice doc:name="Choice" doc:id="6a562784-1895-4b4f-a5ae-00c9e428d73d" >
 			<when expression="#[not isEmpty(payload)]">
 				<set-payload value="#['US']" doc:name="US" doc:id="e4f00442-a636-4e9c-ad44-f2c1637fde18" />
@@ -21,6 +21,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 				<logger level="INFO" doc:name="Payload" doc:id="3b885eb5-7e49-435b-858e-ea2b9d063807" message="#[payload]"/>
 			</otherwise>
 		</choice>
-		<logger level="INFO" doc:name="Logger2" doc:id="d5263e4f-2ebe-4aaf-9b75-fe5b19cc8879" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d5263e4f-2ebe-4aaf-9b75-fe5b19cc8879" message="#[payload]"/>
 	</flow>
 </mule>
