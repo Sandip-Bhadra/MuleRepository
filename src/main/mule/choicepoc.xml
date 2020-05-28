@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="70c0ee30-ed57-4491-b88e-25d52f4d1b92" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="choicepocFlow" doc:id="ac883450-b8c4-4db8-9462-8cbe3482bf70" >
+		<http:listener doc:name="Listener" doc:id="1fd7ff98-c668-4859-8a94-65db75079bf5" config-ref="HTTP_Listener_config" path="/choice"/>
+		<set-payload value="#['region']" doc:name="Set Payload" doc:id="5c0b42f0-b044-4bf6-9b73-a13c18f36730" />
+		<choice doc:name="Choice" doc:id="6a562784-1895-4b4f-a5ae-00c9e428d73d" >
+			<when expression="#[not isEmpty(payload)]">
+				<set-payload value="#['US']" doc:name="US" doc:id="e4f00442-a636-4e9c-ad44-f2c1637fde18" />
+			</when>
+			<when expression="#[payload is String]">
+				<set-payload value="#['EU']" doc:name="EU" doc:id="93895918-85e7-4ef8-b79d-717f6b96d8b7" />
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Payload" doc:id="3b885eb5-7e49-435b-858e-ea2b9d063807" message="#[payload]"/>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="d5263e4f-2ebe-4aaf-9b75-fe5b19cc8879" message="#[payload]"/>
+	</flow>
+</mule>
