@@ -21,6 +21,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 				<logger level="INFO" doc:name="Payload" doc:id="3b885eb5-7e49-435b-858e-ea2b9d063807" message="#[payload]"/>
 			</otherwise>
 		</choice>
-		<logger level="INFO" doc:name="Logger" doc:id="d5263e4f-2ebe-4aaf-9b75-fe5b19cc8879" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger1" doc:id="d5263e4f-2ebe-4aaf-9b75-fe5b19cc8879" message="#[payload]"/>
 	</flow>
 </mule>
